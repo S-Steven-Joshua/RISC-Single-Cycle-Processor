@@ -15,6 +15,6 @@ The processor supports fundamental instruction categories including:
 
 This project demonstrates how instructions move through the datapath, how control signals are generated, and how memory and register operations are performed within a single clock cycle architecture.
 
-The design was implemented and verified through simulation using Verilog testbenches. Additional modules and peripherals may also be integrated to expand the processor functionality further.
+The design was implemented and verified through simulation using System Verilog testbenches. Additional modules and peripherals may also be integrated to expand the processor functionality further.
 
 ---
