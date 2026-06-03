@@ -34,7 +34,7 @@ The design consists of two major blocks:
 <img width="1920" height="1021" alt="Image" src="https://github.com/user-attachments/assets/652020eb-ac72-422d-872b-807a8825092e" />
 
 ---
-## Output for the Deserializer
+## Output for the UART
 
 
 ## System Architecture
