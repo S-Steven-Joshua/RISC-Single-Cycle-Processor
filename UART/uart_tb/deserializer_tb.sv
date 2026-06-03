@@ -67,8 +67,8 @@ module deserializer_tb;
         
         @(posedge clk);
         send_byte(8'hDE);
-        send_byte(8'hAD);
-        send_byte(8'hBE);
+        send_byte(8'hAF);
+        send_byte(8'hBA);
         send_byte(8'hEF);
         
         
