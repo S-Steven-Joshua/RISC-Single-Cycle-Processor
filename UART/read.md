@@ -88,4 +88,4 @@ The design was verified using a SystemVerilog testbench that performs end-to-end
 
 **Steven Joshua**
 
-Electronics and VLSI Student
+Electronics and VLSI Enthusiast
