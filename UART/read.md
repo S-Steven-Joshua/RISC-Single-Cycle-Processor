@@ -39,4 +39,7 @@ The design consists of two major blocks:
 
 ---
 ## Overall Output 
-## System Architecture
+<img width="1920" height="1019" alt="Image" src="https://github.com/user-attachments/assets/180ce083-292b-4d5b-8600-1f94bd580d29" />
+
+---
+## Linting Output 
