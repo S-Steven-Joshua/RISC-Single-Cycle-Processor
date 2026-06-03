@@ -35,6 +35,8 @@ The design consists of two major blocks:
 
 ---
 ## Output for the UART
+<img width="1920" height="1017" alt="Image" src="https://github.com/user-attachments/assets/36a770e7-3cd1-467e-b5fe-dfcbad741171" />
 
-
+---
+## Overall Output 
 ## System Architecture
