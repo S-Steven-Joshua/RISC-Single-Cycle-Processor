@@ -54,9 +54,14 @@ The design consists of:
 | PRESETn | Input | Active-low reset |
 | PADDR | Input | Address bus |
 | PWDATA | Input | Write data bus |
-| PWRITE | Input | Write control |
+| PWRITE | Output | Write control |
 | PSEL | Output | Peripheral select |
 | PENABLE | Output | Access phase indicator |
 | PREADY | Input | Slave ready signal |
 
 ---
+## Author
+
+**Steven Joshua**
+
+Electronics & VLSI Enthusiast 
