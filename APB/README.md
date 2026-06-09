@@ -24,3 +24,8 @@ The design consists of:
 
 ---
 ## APB Protocol
+<img width="690" height="455" alt="Image" src="https://github.com/user-attachments/assets/06b75205-d3f4-493e-a421-541ab8027300" />
+
+- **NOTE:HERE BACK TO BACK TRANSACTION IS AVOIDED. WE CAN CHANGE IT IF WE WANT IT**
+---
+## Output 
