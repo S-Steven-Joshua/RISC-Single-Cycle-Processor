@@ -23,7 +23,7 @@
 module normal #(parameter N=4)(
     input logic clk,
     input logic rst,
-    input logic enable,
+    input logic write,
     input logic [N-1:0] data_in,
     input logic [3:0] count,
     output logic wave,
@@ -34,7 +34,7 @@ module normal #(parameter N=4)(
     logic [N-1:0] counter;
     logic [3:0] mem_1;
     logic [3:0] counter_1;
-    
+    logic write_pending;
     typedef enum logic [1:0] {idle,counting,pulse} state_t;
     state_t state;
     always_ff @ (posedge clk)
@@ -51,17 +51,25 @@ module normal #(parameter N=4)(
             end
         else
             begin
+            if(write)
+                begin
+                    mem<=data_in;
+                    mem_1<=count;
+                    if(data_in !='0)
+                        begin
+                        write_pending<=1'b1;
+                        end
+                end
             case(state)
                 idle:
                 begin
                     wave<=1'b0;
-                    if(enable)
+                    if(write_pending)
                         begin
-                        mem<=data_in;
-                        mem_1<=count;
                         counter<='0;
                         counter_1<='0;
                         busy<=1'b1;
+                        write_pending<=1'b0;
                         state<=counting;
                         end
                    else
@@ -98,6 +106,8 @@ module normal #(parameter N=4)(
                         wave<=1'b0;
                         busy<=1'b0;
                         state<=idle;
+                        //mem<='0;
+                        //mem_1<='0;
                         end
                     else
                         begin
