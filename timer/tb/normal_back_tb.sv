@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 17.06.2026 00:02:20
+// Create Date: 17.06.2026 02:23:57
 // Design Name: 
-// Module Name: normal_tb
+// Module Name: normal_back_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,8 +19,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
- 
-module normal_tb;
+
+module normal_back_tb;
     logic clk;
     logic rst;
     logic write;
@@ -29,7 +29,7 @@ module normal_tb;
     logic wave;
     logic busy;
     
-    normal #(.N(4)) normal1(
+    normal_back #(.N(4)) normal_back1(
         .clk(clk),
         .rst(rst),
         .write(write),
@@ -38,6 +38,7 @@ module normal_tb;
         .wave(wave),
         .busy(busy)
     );
+    
     initial begin
     clk=0;
     forever #5 clk=~clk;
@@ -45,7 +46,7 @@ module normal_tb;
     
     initial begin
     $monitor("Time=%d wave=%b busy=%b counter=%b counter_1=%b write=%b ",$time,wave,busy,
-        normal.counter,normal.counter_1,write  
+        normal_back.counter,normal_back.counter_1,write  
     );
     end
     
@@ -76,4 +77,4 @@ module normal_tb;
     
     $finish;
     end
-endmodule:normal_tb
+endmodule:normal_back_tb
