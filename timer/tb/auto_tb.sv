@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 17.06.2026 00:02:20
+// Create Date: 17.06.2026 03:39:22
 // Design Name: 
-// Module Name: normal_tb
+// Module Name: auto_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,33 +19,32 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
- 
-module normal_tb;
+
+module auto_tb;
     logic clk;
     logic rst;
     logic write;
     logic [3:0] data_in;
-    logic [3:0] count;
-    logic wave;
+    logic busy;
     logic pready_p;
     
-    normal #(.N(4)) normal1(
+    auto #(.N(4)) auto1(
         .clk(clk),
         .rst(rst),
         .write(write),
         .data_in(data_in),
-        .count(count),
-        .wave(wave),
-        .pready_p(pready)
+        .busy(busy),
+        .pready_p(pready_p)
     );
+    
     initial begin
     clk=0;
     forever #5 clk=~clk;
     end
     
     initial begin
-    $monitor("Time=%d wave=%b busy=%b counter=%b counter_1=%b write=%b ",$time,wave,busy,
-        normal.counter,normal.counter_1,write  
+    $monitor("Time=%d wave=%b busy=%b counter=%b  write=%b ",$time,wave,busy,
+        auto.counter,write  
     );
     end
     
@@ -57,10 +56,10 @@ module normal_tb;
     @(posedge clk);
     write=1'b1;
     data_in=4'b1100;
-    count=4'b0100;
+    //count=4'b0100;
     @(posedge clk);
     write=0;
-    #200;
+    #500;
     
     @(posedge clk);
     write=1;
@@ -76,4 +75,4 @@ module normal_tb;
     
     $finish;
     end
-endmodule:normal_tb
+endmodule

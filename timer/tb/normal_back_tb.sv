@@ -27,7 +27,7 @@ module normal_back_tb;
     logic [3:0] data_in;
     logic [3:0] count;
     logic wave;
-    logic busy;
+    logic pready_p;
     
     normal_back #(.N(4)) normal_back1(
         .clk(clk),
@@ -36,7 +36,7 @@ module normal_back_tb;
         .data_in(data_in),
         .count(count),
         .wave(wave),
-        .busy(busy)
+        .pready_p(pready_p)
     );
     
     initial begin
