@@ -28,9 +28,10 @@ module pwm(
     //input logic penable,
     input logic write,
     output logic wave,
-    output logic busy
+    //output logic busy,
+    output logic pready_p
     );
-    
+    assign pready_p=1'b1;
     logic [31:0] pwm_data;
     always_ff @ (posedge clk)
         begin
@@ -56,7 +57,7 @@ module pwm(
         if(rst)
         begin
             counter <= 16'd0;
-            busy    <= 1'b0;
+            //busy    <= 1'b0;
         end
         else if(enable && period != 0)
         begin
@@ -65,12 +66,12 @@ module pwm(
             else
                 counter <= counter + 16'd1;
 
-            busy <= 1'b1;
+            //busy <= 1'b1;
         end
         else
         begin
             counter <= 16'd0;
-            busy    <= 1'b0;
+            //busy    <= 1'b0;
         end
     end
     assign wave=(counter<duty) && enable;         

@@ -47,15 +47,16 @@ module pwm_core(
         .pwdata(pwdata),
         .trans(trans)
     );
-    logic busy;
+    //logic busy;
     logic write;
     logic [31:0] p_data;
+    logic pready_p;
     apb_slave apb_slave1(
         .clk(clk),
         .prstn(~rst),
         .psel(psel),
         .trans(trans),
-        .pready_p(~busy),
+        .pready_p(pready_p),
         .penable(penable),
         .pwrite(pwrite),
         .pwdata(pwdata),
@@ -70,6 +71,8 @@ module pwm_core(
         .data(p_data),
         .write(write),
         .wave(wave),
-        .busy(busy)
+        //.busy(busy),
+        .pready_p(pready_p)
+        
     );
 endmodule:pwm_core

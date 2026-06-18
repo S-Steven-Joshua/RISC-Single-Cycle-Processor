@@ -44,7 +44,7 @@ module apb_slave(
         else 
             begin
             pwrite_en<=1'b0;
-            if(psel && penable && trans && pwrite)
+            if(psel && penable && trans && pwrite && pready_p)
                 begin
                 p_data<=pwdata;
                 write_pending<=1'b1;

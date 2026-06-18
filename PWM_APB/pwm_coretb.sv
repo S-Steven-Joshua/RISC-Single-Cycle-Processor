@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ps 
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -40,10 +40,10 @@ module pwm_coretb;
     forever #5 clk =~clk;
     end
     initial begin
-    $monitor(" psel=%b penable=%b trans=%b write=%b data=%h pready=%b p_data=%h pwdata=%h state=%d  busy=%b enable=%b",pwm_core.apb_slave1.psel,
+    $monitor(" psel=%b penable=%b trans=%b write=%b data=%h pready=%b p_data=%h pwdata=%h state=%d  enable=%b paddr=%x",pwm_core.apb_slave1.psel,
         pwm_core.apb_slave1.penable,pwm_core.apb_slave1.trans,pwm_core.apb_slave1.pwrite_en,data,
-        pwm_core.pwm1.busy,pwm_core.apb_slave1.p_data,pwm_core.apb_slave1.pwdata,pwm_core.apb_master2.state,pwm_core.pwm1.busy,
-        pwm_core.pwm1.enable
+        pwm_core.apb_slave1.pready,pwm_core.apb_slave1.p_data,pwm_core.apb_slave1.pwdata,pwm_core.apb_master2.state,
+        pwm_core.pwm1.enable,paddr
         );
     end
     initial begin
