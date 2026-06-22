@@ -20,21 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module normal #(parameter N=4)(
+module normal #(parameter N=16)(
     input logic clk,
     input logic rst,
     input logic write,
     input logic [N-1:0] data_in,
     input logic [7:0] count,
     output logic wave,
-    output logic busy
+    output logic pready_p
     );
     
     logic [N-1:0] mem;
     logic [N-1:0] counter;
     logic [7:0] mem_1;
     logic [7:0] counter_1;
-    logic write_pending;
+    //logic write_pending;
+    logic busy;
+    assign pready_p=1'b1;
     typedef enum logic [1:0] {idle,counting,pulse} state_t;
     state_t state;
     always_ff @ (posedge clk)
@@ -47,35 +49,36 @@ module normal #(parameter N=4)(
             counter<='0;
             mem_1<='0;
             counter_1<='0;
+            //write_pending<=0;
             state<=idle;
             end
         else
             begin
-            if(write)
+            if(write && ~busy)
                 begin
                     mem<=data_in;
                     mem_1<=count;
-                    if(data_in !='0)
-                        begin
-                        write_pending<=1'b1;
-                        end
+//                    if(data_in !='0 && ~busy)
+//                        begin
+//                        write_pending<=1'b1;
+//                        end
                 end
             case(state)
                 idle:
                 begin
                     wave<=1'b0;
-                    if(write_pending)
+                    if(mem !=0)
                         begin
                         counter<='0;
                         counter_1<='0;
                         busy<=1'b1;
-                        write_pending<=1'b0;
+                        //write_pending<=1'b0;
                         state<=counting;
                         end
                    else
                     begin
+                    busy<=1'b0;
                     end
-                        busy<=1'b0;
                 end
                 
                 counting:
@@ -86,7 +89,7 @@ module normal #(parameter N=4)(
                         counter<='0;
                         wave<=1'b1;
                         
-                        if(mem_1==4'b0)
+                        if(mem_1==8'b0)
                             begin
                             state<=idle;
                             end
@@ -108,8 +111,8 @@ module normal #(parameter N=4)(
                         wave<=1'b0;
                         busy<=1'b0;
                         state<=idle;
-                        mem<='0;
-                        mem_1<='0;
+//                        mem<='0;
+//                        mem_1<='0;
                         end
                     else
                         begin

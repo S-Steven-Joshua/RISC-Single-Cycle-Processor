@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module auto #(parameter N=4)(
+module auto #(parameter N=16)(
     input logic clk,
     input logic rst,
     input logic write,

@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module square #(parameter N=4)(
+module square #(parameter N=16)(
     input logic clk,
     input logic rst,
     input logic write,
