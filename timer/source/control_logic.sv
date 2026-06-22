@@ -23,11 +23,13 @@
 module control_logic(
     input logic [31:0] data_word,
     input logic write,
-    output logic master_busy,
+    input logic pready_p,
     output logic [15:0] bit_16,
     output logic [7:0] counter_value,
-    output logic [5:0] control_word//(data_word[26],mode)
+    output logic [5:0] control_word,
+    //(data_word[26],mode)
     //output logic [1:0] size_sel
+    output logic master_ready
     );
     //control word 6-square back 5-square 4-auto back 3-auto 2-normal back 1-normal
     //data_word [31:0]
@@ -37,7 +39,7 @@ module control_logic(
     //[26] is for the forward or backword, 1 for forward 0 for backword
     //[28:27] is for selection of size//00-
     //rest bits for the time being no use
-
+    assign master_ready=pready_p;
     always_latch  
         begin
             if(write)
