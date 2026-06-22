@@ -46,8 +46,11 @@ module decoder_logictb;
     end
     
     initial begin
-    $monitor("Time=%d rst=%d bit=%d counter_value=%d control_word=%b ready=%b wave1=%b wave2=%b normal_counter=%b normal_i_counter=%b sqaure_counter=%b  ",
-        $time,rst,bit_16,counter_value,control_word,ready,wave1,wave2,decoder_logic.normal_time.counter,decoder_logic.normal_time.counter_1,decoder_logic.square_time.counter);
+    $monitor("Time=%d rst=%d bit=%d counter_value=%d control_word=%b ready=%b wave1=%b wave2=%b normal_counter=%b normal_i_counter=%b sqaure_counter=%b data_in_normal=%b,normal_busy=%b",
+        $time,rst,bit_16,counter_value,control_word,ready,wave1,wave2,decoder_logic.normal_time.counter,decoder_logic.normal_time.counter_1,decoder_logic.square_time.counter,decoder_logic.normal_time.data_in,
+        decoder_logic.normal_time.busy
+        
+        );
     end
     
     initial begin
@@ -70,7 +73,7 @@ module decoder_logictb;
     bit_16=16'b0000_0000_0000_0000;
     counter_value=8'b0000_1011;
     control_word=6'b010_000;
-    #100;
+    #1000;
     $finish;
     end
 endmodule:decoder_logictb

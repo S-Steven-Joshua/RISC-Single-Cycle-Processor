@@ -24,19 +24,19 @@ module normal_tb;
     logic clk;
     logic rst;
     logic write;
-    logic [3:0] data_in;
+    logic [15:0] data_in;
     logic [7:0] count;
     logic wave;
-    logic busy;
+    logic pready_p;
     
-    normal #(.N(4)) normal1(
+    normal #(.N(16)) normal1(
         .clk(clk),
         .rst(rst),
         .write(write),
         .data_in(data_in),
         .count(count),
         .wave(wave),
-        .busy(busy)
+        .pready_p(pready_p)
     );
     initial begin
     clk=0;
@@ -44,8 +44,8 @@ module normal_tb;
     end
     
     initial begin
-    $monitor("Time=%d wave=%b busy=%b counter=%b counter_1=%b write=%b ",$time,wave,busy,
-        normal.counter,normal.counter_1,write  
+    $monitor("Time=%d wave=%b busy=%b counter=%b counter_1=%b write=%b data_in=%b mem=%b ",$time,wave,normal.busy,
+        normal.counter,normal.counter_1,write,data_in,normal.mem
     );
     end
     
@@ -56,11 +56,11 @@ module normal_tb;
     
     @(posedge clk);
     write=1'b1;
-    data_in=4'b1100;
+    data_in=16'b0000_0000_0000_0101;
     count=8'b0000_0100;
     @(posedge clk);
     write=0;
-    #200;
+    #300;
     
 //    @(posedge clk);
 //    write=1;
@@ -69,10 +69,13 @@ module normal_tb;
 //    write=0;
 //    #200;
     
-//    @(posedge clk);
-//    data_in=8'b1111;
-//    count=8'b1111;
-//    #300;
+    @(posedge clk);
+    write=1;
+    data_in=16'b0000_0000_0001_0111;
+    count=8'b0000_1010;
+    @(posedge clk);
+    write=0;
+    #300;
     
     $finish;
     end

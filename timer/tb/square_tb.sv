@@ -24,7 +24,7 @@ module square_tb;
     logic clk;
     logic rst;
     logic write;
-    logic [3:0] data_in;
+    logic [15:0] data_in;
     logic wave;
     logic pready_p;
     
@@ -51,14 +51,14 @@ module square_tb;
     rst=0;
     @(posedge clk);
     write=1;
-    data_in=4'b0100;
+    data_in=16'b0000_0000_0001_0101;
     @(posedge clk);
     write=0;
     #400;
     
     @(posedge clk);
     write=1;
-    data_in=4'b0000;
+    data_in=16'b0000_0000_0000_0000;
     #200;
     $finish;
     end

@@ -24,16 +24,16 @@ module auto_tb;
     logic clk;
     logic rst;
     logic write;
-    logic [3:0] data_in;
-    logic busy;
+    logic [15:0] data_in;
+    logic wave;
     logic pready_p;
     
-    auto #(.N(4)) auto1(
+    auto #(.N(16)) auto1(
         .clk(clk),
         .rst(rst),
         .write(write),
         .data_in(data_in),
-        .busy(busy),
+        .wave(wave),
         .pready_p(pready_p)
     );
     
@@ -43,7 +43,7 @@ module auto_tb;
     end
     
     initial begin
-    $monitor("Time=%d wave=%b busy=%b counter=%b  write=%b ",$time,wave,busy,
+    $monitor("Time=%d wave=%b  counter=%b  write=%b ",$time,wave,
         auto.counter,write  
     );
     end
@@ -55,7 +55,7 @@ module auto_tb;
     
     @(posedge clk);
     write=1'b1;
-    data_in=4'b1100;
+    data_in=16'b0000_0000_0000_0101;
     //count=4'b0100;
     @(posedge clk);
     write=0;
@@ -63,7 +63,7 @@ module auto_tb;
     
     @(posedge clk);
     write=1;
-    data_in=4'b0000;
+    data_in=16'b0000_0000_0000_0000;
     @(posedge clk);
     write=0;
     #200;
