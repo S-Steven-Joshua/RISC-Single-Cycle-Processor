@@ -26,8 +26,8 @@ module control_logic(
     output logic master_busy,
     output logic [15:0] bit_16,
     output logic [7:0] counter_value,
-    output logic [5:0] control_word,//(data_word[26],mode)
-    output logic [1:0] size_sel
+    output logic [5:0] control_word//(data_word[26],mode)
+    //output logic [1:0] size_sel
     );
     //control word 6-square back 5-square 4-auto back 3-auto 2-normal back 1-normal
     //data_word [31:0]
@@ -54,14 +54,14 @@ module control_logic(
                                     control_word<=6'b000_001;//normal mode forward direction 4 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b00;
+                                    //size_sel<=2'b00;
                                 end
                             else
                                 begin
                                     control_word<=6'b000_010;//normal mode reverse direction 4 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b00;
+                                    //size_sel<=2'b00;
                                 end
                         end
                         2'b01:
@@ -71,14 +71,14 @@ module control_logic(
                                     control_word<=6'b000_001;//normal mode forward direction 8 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b01;
+                                    //size_sel<=2'b01;
                                 end
                             else
                                 begin
                                     control_word<=6'b000_010;//normal mode reverse direction 8 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b01;
+                                    //size_sel<=2'b01;
                                 end
                         end
                         2'b10:
@@ -88,14 +88,14 @@ module control_logic(
                                     control_word<=6'b000_001;//normal mode forward direction 12 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b10;
+                                    //size_sel<=2'b10;
                                 end
                             else
                                 begin
                                     control_word<=6'b000_010;//normal mode reverse direction 12 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b10;
+                                    //size_sel<=2'b10;
                                 end
                         end
                         2'b11:
@@ -105,14 +105,14 @@ module control_logic(
                                     control_word<=6'b000_001;//normal mode forward direction 16 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b11;
+                                    //size_sel<=2'b11;
                                 end
                             else
                                 begin
                                     control_word<=6'b000_010;//normal mode reverse direction 16 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b11;
+                                    //size_sel<=2'b11;
                                 end
                         end
                     default:
@@ -120,7 +120,7 @@ module control_logic(
                             bit_16<='0;
                             counter_value<='0;
                             control_word<='0;
-                            size_sel<='0;
+                            //size_sel<='0;
                     end
                     endcase
                 end
@@ -136,14 +136,14 @@ module control_logic(
                                     control_word<=6'b000_100;//auto mode forward direction 4 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b00;
+                                    //size_sel<=2'b00;
                                 end
                             else
                                 begin
                                     control_word<=6'b001_000;//auto mode reverse direction 4 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b00;
+                                    //size_sel<=2'b00;
                                 end
                         end
                         2'b01:
@@ -153,14 +153,14 @@ module control_logic(
                                     control_word<=6'b000_100;//auto mode forward direction 8 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b01;
+                                    //size_sel<=2'b01;
                                 end
                             else
                                 begin
                                     control_word<=6'b001_000;//auto mode reverse direction 8 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b01;
+                                    //size_sel<=2'b01;
                                 end
                         end
                         2'b10:
@@ -170,14 +170,14 @@ module control_logic(
                                     control_word<=6'b000_100;//auto mode forward direction 12 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b10;
+                                    //size_sel<=2'b10;
                                 end
                             else
                                 begin
                                     control_word<=6'b001_000;//auto mode reverse direction 12 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b10;
+                                    //size_sel<=2'b10;
                                 end
                         end
                         2'b11:
@@ -187,14 +187,14 @@ module control_logic(
                                     control_word<=6'b000_100;//auto mode forward direction 16 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b11;
+                                    //size_sel<=2'b11;
                                 end
                             else
                                 begin
                                     control_word<=6'b001_000;//auto mode reverse direction 16 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b11;
+                                    //size_sel<=2'b11;
                                 end
                         end
                     default:
@@ -202,7 +202,7 @@ module control_logic(
                             bit_16<='0;
                             counter_value<='0;
                             control_word<='0;
-                            size_sel<='0;
+                            //size_sel<='0;
                     end
                     endcase
                 end
@@ -218,14 +218,14 @@ module control_logic(
                                     control_word<=6'b010_000;//normal mode forward direction 4 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b00;
+                                    //size_sel<=2'b00;
                                 end
                             else
                                 begin
                                     control_word<=6'b100_000;//normal mode reverse direction 4 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b00;
+                                    //size_sel<=2'b00;
                                 end
                         end
                         2'b01:
@@ -235,14 +235,14 @@ module control_logic(
                                     control_word<=6'b010_000;//square mode forward direction 8 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b01;
+                                    //size_sel<=2'b01;
                                 end
                             else
                                 begin
                                     control_word<=6'b100_000;//square mode reverse direction 8 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b01;
+                                    //size_sel<=2'b01;
                                 end
                         end
                         2'b10:
@@ -252,14 +252,14 @@ module control_logic(
                                     control_word<=6'b010_000;//square mode forward direction 12 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b10;
+                                    //size_sel<=2'b10;
                                 end
                             else
                                 begin
                                     control_word<=6'b100_000;//square mode reverse direction 12 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b10;
+                                    //size_sel<=2'b10;
                                 end
                         end
                         2'b11:
@@ -269,14 +269,14 @@ module control_logic(
                                     control_word<=6'b010_000;//square mode forward direction 16 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b11;
+                                    //size_sel<=2'b11;
                                 end
                             else
                                 begin
                                     control_word<=6'b100_000;//square mode reverse direction 16 bit
                                     bit_16<=data_word[15:0];
                                     counter_value<=data_word[23:16];
-                                    size_sel<=2'b11;
+                                    //size_sel<=2'b11;
                                 end
                         end
                     default:
@@ -284,7 +284,7 @@ module control_logic(
                             bit_16<='0;
                             counter_value<='0;
                             control_word<='0;
-                            size_sel<='0;
+                            //size_sel<='0;
                     end
                     endcase
                 end
@@ -293,7 +293,7 @@ module control_logic(
                     bit_16<='0;
                     counter_value<='0;
                     control_word<='0;
-                    size_sel<='0;
+                    //size_sel<='0;
                 end
             endcase
         end
